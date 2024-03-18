@@ -10,5 +10,24 @@
   </head>
   <body>
     <h1>Home</h1>
+
+    <div class="naoFeitas">
+        {% for tarefa in naoFeitas %}
+          <div class="tarefaCard">
+            <span>{{ tarefa.descricao }}</span>
+          </div>
+        {% endfor %}
+        
+      </div>
+
+    <div class="feitas">
+      {% for tarefa in feitas %}
+        <div class="tarefaCard">
+          <span>{{ tarefa.descricao }}</span>
+        </div>
+      {% endfor %}
+    </div>
+
+  
   </body>
 </html>
