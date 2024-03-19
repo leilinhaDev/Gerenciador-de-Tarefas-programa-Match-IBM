@@ -9,25 +9,44 @@
     <title>Gerenciador de Tarefas</title>
   </head>
   <body>
-    <h1>Home</h1>
+    <h1 class="titulo">Gerenciador de Tarefas</h1>
 
-    <div class="naoFeitas">
+    <div class="container">
+      <div class="naoFeitas listaTarefas">
+        <h2>Tarefas a Fazer</h2>
+
         {% for tarefa in naoFeitas %}
+          <div class="tarefaCard">
+            {% if tarefa.prioridade == 1 %}
+              <div class="prioridade baixa"></div>
+            {% endif %}
+
+            {% if tarefa.prioridade == 2 %}
+              <div class="prioridade media"></div>
+            {% endif %}
+
+            {% if tarefa.prioridade == 3 %}
+              <div class="prioridade alta"></div>
+            {% endif %}
+
+            <div class="descData">
+                <span class="desc" title="{{ tarefa.descricao }}">{{ tarefa.descricao }}</span>
+                <span class="data">{{ tarefa.dataVencimento }}</span>
+            </div>
+
+            
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="feitas listaTarefas">
+        <h2>Tarefas Feitas</h2>
+        {% for tarefa in feitas %}
           <div class="tarefaCard">
             <span>{{ tarefa.descricao }}</span>
           </div>
         {% endfor %}
-        
       </div>
-
-    <div class="feitas">
-      {% for tarefa in feitas %}
-        <div class="tarefaCard">
-          <span>{{ tarefa.descricao }}</span>
-        </div>
-      {% endfor %}
     </div>
-
-  
   </body>
 </html>
