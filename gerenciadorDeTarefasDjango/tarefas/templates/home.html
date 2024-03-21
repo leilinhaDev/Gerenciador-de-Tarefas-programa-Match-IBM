@@ -6,14 +6,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script src="{% static 'home.js' %}"></script>
     <title>Gerenciador de Tarefas</title>
   </head>
   <body>
     <h1 class="titulo">Gerenciador de Tarefas</h1>
 
+    <!-- Listas de tarefas -->
     <div class="container">
       <div class="naoFeitas listaTarefas">
-        <h2>Tarefas a Fazer</h2>
+        <div class="tituAdd">
+          <h2>Tarefas a Fazer</h2>
+          <i id="addTaskButton" class="material-icons btnAdd" title="Adicione uma nova tarefa">add_circle</i>
+        </div>
 
         {% for tarefa in naoFeitas %}
           <div class="tarefaCard">
@@ -30,11 +36,15 @@
             {% endif %}
 
             <div class="descData">
-                <span class="desc" title="{{ tarefa.descricao }}">{{ tarefa.descricao }}</span>
-                <span class="data">{{ tarefa.dataVencimento }}</span>
+              <span class="desc" title="{{ tarefa.descricao }}">{{ tarefa.descricao }}</span>
+              <span class="data">{{ tarefa.dataVencimento }}</span>
             </div>
 
-            
+            <div class="btnsTarefa">
+              <a href="mudarTarefa/{{ tarefa.id }}"><i class="material-icons btns action" title="Realizar Tarefa">arrow_forward_ios</i></a>
+              <i class="material-icons btns" title="Editar Tarefa">edit</i>
+              <a href="deletarTarefa/{{ tarefa.id }}"><i class="material-icons btns delete" title="Excluir Tarefa">delete</i></a>
+            </div>
           </div>
         {% endfor %}
       </div>
@@ -43,9 +53,46 @@
         <h2>Tarefas Feitas</h2>
         {% for tarefa in feitas %}
           <div class="tarefaCard">
-            <span>{{ tarefa.descricao }}</span>
+            <div class="descData">
+              <span class="desc" title="{{ tarefa.descricao }}">{{ tarefa.descricao }}</span>
+              <span class="data">{{ tarefa.dataVencimento }}</span>
+            </div>
+            <div class="btnsTarefa">
+              <a href="mudarTarefa/{{ tarefa.id }}"><i class="material-icons btns action arrow" title="Voltar Tarefa">arrow_back_ios</i></a>
+              <i class="material-icons btns" title="Editar Tarefa">edit</i>
+              <i class="material-icons btns delete" title="Excluir Tarefa">delete</i>
+            </div>
           </div>
         {% endfor %}
+      </div>
+    </div>
+
+    <!-- Modal Adicionar Tarefa -->
+    <div id="addTaskModal" class="modal">
+      <div class="modal-content">
+        <span class="closeModal">&times;</span>
+        <h2>Adicionar Nova Tarefa</h2>
+        <!-- Formulário para Adicionar Nova Tarefa -->
+        <form id="addTaskForm" method="post" action="{% url 'adicionarTarefa' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required />
+          </div>
+          <div class="form-group">
+            <label for="prioridade">Prioridade:</label>
+            <select id="prioridade" name="prioridade" required>
+              <option value="1">Baixa</option>
+              <option value="2">Média</option>
+              <option value="3">Alta</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dataVencimento">Data de Vencimento:</label>
+            <input type="date" id="dataVencimento" name="dataVencimento" required />
+          </div>
+          <button type="submit" class="btn">Adicionar</button>
+        </form>
       </div>
     </div>
   </body>
