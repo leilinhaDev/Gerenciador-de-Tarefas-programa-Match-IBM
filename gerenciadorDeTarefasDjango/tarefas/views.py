@@ -6,8 +6,8 @@ from .forms import TarefaForm
 
 
 def home(request):
-    feitas = Tarefa.objects.filter(finalizada = True)
-    naoFeitas = Tarefa.objects.filter(finalizada = False)
+    feitas = Tarefa.objects.filter(finalizada = True).order_by('-prioridade', 'dataVencimento')
+    naoFeitas = Tarefa.objects.filter(finalizada = False).order_by('-prioridade', 'dataVencimento')
     template = loader.get_template('home.html')
     context = {
           'feitas': feitas,
@@ -39,3 +39,21 @@ def mudarTarefa(request, id):
             tarefa.finalizada = True
       tarefa.save()
       return redirect('home') 
+
+def editarTarefa(request, id):
+  tarefa = Tarefa.objects.get(pk=id)
+
+  if request.method == 'POST':
+    form = TarefaForm(request.POST, instance=tarefa)
+    if form.is_valid():
+      form.save()
+      return redirect('home')
+
+  else:
+    form = TarefaForm(instance=tarefa)
+
+  context = {
+    'form': form,
+  }
+  
+
