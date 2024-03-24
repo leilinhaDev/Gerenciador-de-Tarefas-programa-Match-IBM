@@ -1,0 +1,5 @@
+autopep8==2.0.4
+pycodestyle==2.11.1
+sqlite3
+Django==5.0.2
+Python==3.11.5

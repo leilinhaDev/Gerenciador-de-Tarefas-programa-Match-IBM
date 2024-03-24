@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.openModalParaExcluir = function openModalParaExcluir(id, descricao) {
         document.getElementById('modalConfirmacao').style.display = 'block';
         document.getElementById('btnDeletarSim').setAttribute('href', 'deletarTarefa/' + id)
-        document.getElementById('confirmacaoDeletar').innerHTML = 'Deseja apagar a Tarefa ' + descricao;
+        document.getElementById('confirmacaoDeletar').innerHTML = 'Deseja apagar a Tarefa: ' + descricao;
     }
 
     closeModal.addEventListener('click', function () {
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const funcaoFecharModal = function(){
         document.getElementById('modalConfirmacao').style.display = 'none'    
     }
-    
+
     document.getElementById('fecharConfirmacao').addEventListener('click', funcaoFecharModal )
     document.getElementById('btnDeleteNao').addEventListener('click', funcaoFecharModal)
 

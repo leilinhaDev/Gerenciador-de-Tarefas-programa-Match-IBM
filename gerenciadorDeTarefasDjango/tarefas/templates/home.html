@@ -60,7 +60,7 @@
             <div class="btnsTarefa">
               <a href="mudarTarefa/{{ tarefa.id }}"><i class="material-icons btns action arrow" title="Voltar Tarefa">arrow_back_ios</i></a>
               <i class="material-icons btns" title="Editar Tarefa" onclick="openModalForEdicao({{ tarefa.id }}, '{{ tarefa.descricao }}', {{ tarefa.prioridade }}, '{{ tarefa.dataVencimento }}')">edit</i>
-              <i class="material-icons btns delete" title="Excluir Tarefa" onclick="openModalParaExcluir({{ tarefa.id }})">delete</i>
+              <i class="material-icons btns delete" title="Excluir Tarefa" onclick="openModalParaExcluir({{ tarefa.id }}, '{{ tarefa.descricao }}')">delete</i>
             </div>
           </div>
         {% endfor %}
@@ -102,10 +102,15 @@
 
     <div id="modalConfirmacao" class="modal">
       <div class="modal-content">
-        <span id="fecharConfirmacao" class="closeModal">&times;</span>
-        <p id="confirmacaoDeletar"></p>
-        <a id="btnDeletarSim" href="">sim</a>
-        <a id="btnDeleteNao">não</a>
+        <div id="modalDeletar">
+          <p id="confirmacaoDeletar"></p>
+          <span id="fecharConfirmacao" class="closeModal">&times;</span>
+        </div>
+        <div id="btnsDeletar">
+          <a id="btnDeletarSim" href="">sim</a>
+          <a id="btnDeleteNao">não</a>
+        </div>
+        
       </div>
     </div>
   </body>
