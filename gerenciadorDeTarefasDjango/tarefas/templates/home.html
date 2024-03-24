@@ -43,7 +43,7 @@
             <div class="btnsTarefa">
               <a href="mudarTarefa/{{ tarefa.id }}"><i class="material-icons btns action" title="Realizar Tarefa">arrow_forward_ios</i></a>
               <i class="material-icons btns" title="Editar Tarefa" onclick="openModalForEdicao({{ tarefa.id }}, '{{ tarefa.descricao }}', {{ tarefa.prioridade }}, '{{ tarefa.dataVencimento }}')">edit</i>    
-              <i class="material-icons btns delete" title="Excluir Tarefa" onclick="openModalParaExcluir({{ tarefa.id }})">delete</i>
+              <i class="material-icons btns delete" title="Excluir Tarefa" onclick="openModalParaExcluir({{ tarefa.id }}, '{{ tarefa.descricao }}')">delete</i>
             </div>
           </div>
         {% endfor %}
@@ -60,7 +60,7 @@
             <div class="btnsTarefa">
               <a href="mudarTarefa/{{ tarefa.id }}"><i class="material-icons btns action arrow" title="Voltar Tarefa">arrow_back_ios</i></a>
               <i class="material-icons btns" title="Editar Tarefa" onclick="openModalForEdicao({{ tarefa.id }}, '{{ tarefa.descricao }}', {{ tarefa.prioridade }}, '{{ tarefa.dataVencimento }}')">edit</i>
-              <a href="deletarTarefa/{{ tarefa.id }}"><i class="material-icons btns delete" title="Excluir Tarefa">delete</i></a>
+              <i class="material-icons btns delete" title="Excluir Tarefa" onclick="openModalParaExcluir({{ tarefa.id }})">delete</i>
             </div>
           </div>
         {% endfor %}
@@ -70,8 +70,11 @@
     <!-- Modal de cadastro/editar da tarefa -->
     <div id="taskModal" class="modal">
       <div class="modal-content">
-        <span class="closeModal">&times;</span>
-        <h2 id="modalTitle">Adicionar Nova Tarefa</h2>
+        <div class="modalHeader">
+          <h2 id="modalTitle">Adicionar Nova Tarefa</h2>
+          <span class="closeModal">&times;</span>
+        </div>
+        
         <!-- Formulário para Cadastrar/Editar Tarefa -->
         <form id="taskForm" method="post" action="">
           {% csrf_token %}
@@ -100,9 +103,9 @@
     <div id="modalConfirmacao" class="modal">
       <div class="modal-content">
         <span id="fecharConfirmacao" class="closeModal">&times;</span>
-        <p>Tem certeza de que deseja deletar?</p>
-        <button id="btnDeleteSim">sim</button>
-        <button id="btnDeleteNao">não</button>
+        <p id="confirmacaoDeletar"></p>
+        <a id="btnDeletarSim" href="">sim</a>
+        <a id="btnDeleteNao">não</a>
       </div>
     </div>
   </body>

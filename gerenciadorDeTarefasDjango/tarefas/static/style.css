@@ -6,12 +6,6 @@ body{
     gap: 12px;
     justify-content: space-evenly;
 }
-.naoFeitas{
-    
-}
-.feitas{
-
-}
 .listaTarefas{
     padding: 12px;
     width: 33%;
@@ -115,7 +109,6 @@ body{
 
 
 
-
 .modal {
     display: none;
     position: fixed;
@@ -129,11 +122,12 @@ body{
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: white;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    width: 400px;
+    border-radius: 15px;
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.37);
 }
 
 .close {
@@ -148,4 +142,62 @@ body{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#btnDeletarSim {
+    text-decoration: none;
+    color: black;
+}
+
+#btnDeleteNao{
+    cursor: pointer;
+}
+
+.closeModal{
+    cursor: pointer;
+    font-size: 22px;
+    color: tomato;
+    font-weight: bold;
+}
+#modalTitle {
+    font-family: math;
+    margin: 0;
+}
+.modalHeader {
+    display: flex;
+    border-bottom: 1px solid black;
+    padding-bottom: 12px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+#taskForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 5px;
+}
+#submitButton {
+    width: 150px;
+    margin-top: 20px;
+    margin-left: calc(100% - 155px);
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background: #58acaf;
+    color: white;
+    font-size: 16px;
+    font-family: math;
+    font-weight: bold;
+    box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.37);
+    cursor: pointer;
+
+}
+#submitButton:hover {
+    color: yellow;
 }

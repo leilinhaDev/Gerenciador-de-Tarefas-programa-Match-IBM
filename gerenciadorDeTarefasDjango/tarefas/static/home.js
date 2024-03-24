@@ -26,20 +26,23 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('task_id').value = taskId;
         modal.style.display = 'block';
     }
-    window.openModalParaExcluir = function openModalParaExcluir(id) {
-        console.log('perguntar se vai apagar a tarefa', id)
+    window.openModalParaExcluir = function openModalParaExcluir(id, descricao) {
         document.getElementById('modalConfirmacao').style.display = 'block';
+        document.getElementById('btnDeletarSim').setAttribute('href', 'deletarTarefa/' + id)
+        document.getElementById('confirmacaoDeletar').innerHTML = 'Deseja apagar a Tarefa ' + descricao;
     }
 
     closeModal.addEventListener('click', function () {
         modal.style.display = 'none';
         
     });
+
+    const funcaoFecharModal = function(){
+        document.getElementById('modalConfirmacao').style.display = 'none'    
+    }
     
-    document.getElementById('fecharConfirmacao').addEventListener('click', function(){
-        document.getElementById('modalConfirmacao').style.display = 'none'
-    })
-    console.log('teste', closeModal)
+    document.getElementById('fecharConfirmacao').addEventListener('click', funcaoFecharModal )
+    document.getElementById('btnDeleteNao').addEventListener('click', funcaoFecharModal)
 
     window.addEventListener('click', function (event) {
         if (event.target == modal) {
