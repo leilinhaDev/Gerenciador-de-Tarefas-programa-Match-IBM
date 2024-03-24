@@ -119,6 +119,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'tarefas/static'),
+]
+
 STATIC_ROOT = '/home/leilinhasds/Gerenciador-de-Tarefas-programa-Match-IBM/gerenciadorDeTarefasDjango/staticfiles/'
 
 # Default primary key field type
