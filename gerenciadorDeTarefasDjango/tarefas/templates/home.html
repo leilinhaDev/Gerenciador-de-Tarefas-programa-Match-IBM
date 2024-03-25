@@ -42,7 +42,7 @@
 
             <div class="btnsTarefa">
               <a href="mudarTarefa/{{ tarefa.id }}"><i class="material-icons btns action" title="Realizar Tarefa">arrow_forward_ios</i></a>
-              <i class="material-icons btns" title="Editar Tarefa" onclick="openModalForEdicao({{ tarefa.id }}, '{{ tarefa.descricao }}', {{ tarefa.prioridade }}, '{{ tarefa.dataVencimento }}')">edit</i>    
+              <i class="material-icons btns" title="Editar Tarefa" onclick="openModalForEdicao({{ tarefa.id }}, '{{ tarefa.descricao }}', {{ tarefa.prioridade }}, '{{ tarefa.dataVencimento }}')">edit</i>
               <i class="material-icons btns delete" title="Excluir Tarefa" onclick="openModalParaExcluir({{ tarefa.id }}, '{{ tarefa.descricao }}')">delete</i>
             </div>
           </div>
@@ -50,7 +50,10 @@
       </div>
 
       <div class="feitas listaTarefas">
-        <h2>Tarefas Feitas</h2>
+        <div class="tituAdd">
+          <h2>Tarefas Feitas</h2>
+        </div>
+        
         {% for tarefa in feitas %}
           <div class="tarefaCard">
             <div class="descData">
@@ -74,7 +77,7 @@
           <h2 id="modalTitle">Adicionar Nova Tarefa</h2>
           <span class="closeModal">&times;</span>
         </div>
-        
+
         <!-- Formulário para Cadastrar/Editar Tarefa -->
         <form id="taskForm" method="post" action="">
           {% csrf_token %}
@@ -110,7 +113,6 @@
           <a id="btnDeletarSim" href="">sim</a>
           <a id="btnDeleteNao">não</a>
         </div>
-        
       </div>
     </div>
   </body>
